@@ -2,6 +2,8 @@ export const ACTIONS = {
   SET_USER: 'SET_USER'
 }
 
+export const STATE = {}
+
 export const REDUCERS = (state, action) => {
   switch (action.type) {
     case ACTIONS.SET_USER: {

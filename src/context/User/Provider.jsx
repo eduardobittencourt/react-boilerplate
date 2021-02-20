@@ -1,13 +1,12 @@
 import { createContext, useContext, useReducer } from 'react'
 
-import { REDUCERS } from './reducers'
-import userActions from './actions'
+import { STATE, REDUCERS } from './reducers'
 
 const UserStateContext = createContext()
 const UserActionsContext = createContext()
 
 const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(REDUCERS, null)
+  const [state, dispatch] = useReducer(REDUCERS, STATE)
 
   return (
     <UserStateContext.Provider value={state}>
@@ -18,7 +17,7 @@ const UserProvider = ({ children }) => {
   )
 }
 
-const useUserState = () => {
+export const useUserState = () => {
   const context = useContext(UserStateContext)
 
   if (context === undefined) {
@@ -28,16 +27,14 @@ const useUserState = () => {
   return context
 }
 
-const useUserDispatch = () => {
+export const useUserActions = () => {
   const context = useContext(UserActionsContext)
 
   if (context === undefined) {
-    throw new Error('useUserDispatch must be used within a UserProvider')
+    throw new Error('useUserActions must be used within a UserProvider')
   }
 
   return context
 }
 
-const useUser = () => ({ store: useUserState(), control: useUserDispatch() })
-
-export { UserProvider, useUser, userActions }
+export default UserProvider

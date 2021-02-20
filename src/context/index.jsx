@@ -1,4 +1,4 @@
-import { UserProvider } from './User'
+import UserProvider from './User/Provider'
 
 const Providers = ({ children }) => {
   return <UserProvider>{children}</UserProvider>

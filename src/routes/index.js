@@ -1,18 +1,23 @@
-import { useUser, userActions } from 'context/User'
+import { useMemo } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import useUser from 'context/User'
+
+import Public from './Public'
+import Authenticated from './Authenticated'
 
 const Routes = () => {
-  const { control } = useUser()
-  const { setUser } = userActions()
+  const { store } = useUser()
 
-  const onClick = () => {
-    setUser({ id: 1, name: 'Eduardo' }, control)
-  }
+  const renderRoute = useMemo(() => {
+    if (!store?.id) {
+      return <Public />
+    }
 
-  return (
-    <div>
-      <button onClick={onClick}>setUser</button>
-    </div>
-  )
+    return <Authenticated />
+  }, [store])
+
+  return <Router>{renderRoute}</Router>
 }
 
 export default Routes
