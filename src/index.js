@@ -7,8 +7,7 @@ import Providers from 'context'
 ReactDOM.render(
   <React.StrictMode>
     <Providers>
-
-    <Routes />
+      <Routes />
     </Providers>
   </React.StrictMode>,
   document.getElementById('root')

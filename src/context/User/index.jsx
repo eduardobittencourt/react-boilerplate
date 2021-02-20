@@ -40,4 +40,4 @@ const useUserDispatch = () => {
 
 const useUser = () => ({ store: useUserState(), control: useUserDispatch() })
 
-export {UserProvider, useUser, userActions}
+export { UserProvider, useUser, userActions }
