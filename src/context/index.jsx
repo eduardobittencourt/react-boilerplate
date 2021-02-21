@@ -1,7 +1,15 @@
 import UserProvider from './User/Provider'
 
+const BootstrapData = ({ children }) => {
+  return children
+}
+
 const Providers = ({ children }) => {
-  return <UserProvider>{children}</UserProvider>
+  return (
+    <UserProvider>
+      <BootstrapData>{children}</BootstrapData>
+    </UserProvider>
+  )
 }
 
 export default Providers

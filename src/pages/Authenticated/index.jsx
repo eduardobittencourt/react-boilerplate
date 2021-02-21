@@ -1,6 +1,11 @@
 import useUser from 'context/User'
+import useStudentsResource from 'resources/students'
 
 const Authenticated = () => {
+  const { data: students } = useStudentsResource.get()
+
+  console.log(students)
+
   const {
     actions: { setUser }
   } = useUser()
