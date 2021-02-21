@@ -2,11 +2,10 @@ import useUser from 'context/User'
 import useStudentsResource from 'resources/students'
 
 const Authenticated = () => {
-  const { data: students } = useStudentsResource.get()
-
-  console.log(students)
+  const { data: students, loading } = useStudentsResource.get()
 
   const {
+    store: user,
     actions: { setUser }
   } = useUser()
 
@@ -14,9 +13,17 @@ const Authenticated = () => {
     setUser(null)
   }
 
+  if (loading) {
+    return 'carregando alunos'
+  }
+
   return (
     <div>
-      <h1>Authenticated</h1>
+      <span>Bem vindo(a) {user.name}</span>
+      <h1>Alunos</h1>
+      {students.map(student => (
+        <p key={student.id}>{student.name}</p>
+      ))}
       <button onClick={onClick}>Logout</button>
     </div>
   )
